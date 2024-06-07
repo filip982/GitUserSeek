@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// Helper Common view for loading images and cropping them in circle
+/// Parameters: we can change height and width of the image but aspect ratio stays fitting image
 struct UserImageView: View {
     let url: URL?
     let width: CGFloat

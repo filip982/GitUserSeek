@@ -10,6 +10,11 @@
 		C47DDE842C1375430088DAB6 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DDE832C1375430088DAB6 /* SearchViewModelTests.swift */; };
 		C47DDE882C13828D0088DAB6 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DDE872C13828D0088DAB6 /* UserImageView.swift */; };
 		C47DDE8B2C1392F90088DAB6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DDE8A2C1392F90088DAB6 /* NetworkMonitor.swift */; };
+		C47DDE8E2C1399A30088DAB6 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = C47DDE8D2C1399A30088DAB6 /* JGProgressHUD */; };
+		C47DDE902C139A470088DAB6 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DDE8F2C139A470088DAB6 /* ProgressHUD.swift */; };
+		C47DDE932C139E5C0088DAB6 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = C47DDE922C139E5C0088DAB6 /* SwiftMessages */; };
+		C47DDE952C139E6F0088DAB6 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DDE942C139E6F0088DAB6 /* MessageManager.swift */; };
+		C47DDE9B2C13AA6C0088DAB6 /* MockGitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DDE9A2C13AA6C0088DAB6 /* MockGitHubService.swift */; };
 		C4B889C62C136EBD001A965F /* GitUserSeekApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B889C52C136EBD001A965F /* GitUserSeekApp.swift */; };
 		C4B889C82C136EBD001A965F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B889C72C136EBD001A965F /* SearchView.swift */; };
 		C4B889CA2C136EC0001A965F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4B889C92C136EC0001A965F /* Assets.xcassets */; };
@@ -45,6 +50,9 @@
 		C47DDE852C1376F80088DAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C47DDE872C13828D0088DAB6 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		C47DDE8A2C1392F90088DAB6 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		C47DDE8F2C139A470088DAB6 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		C47DDE942C139E6F0088DAB6 /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		C47DDE9A2C13AA6C0088DAB6 /* MockGitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGitHubService.swift; sourceTree = "<group>"; };
 		C4B889C22C136EBD001A965F /* GitUserSeek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitUserSeek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B889C52C136EBD001A965F /* GitUserSeekApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserSeekApp.swift; sourceTree = "<group>"; };
 		C4B889C72C136EBD001A965F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -65,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47DDE8E2C1399A30088DAB6 /* JGProgressHUD in Frameworks */,
+				C47DDE932C139E5C0088DAB6 /* SwiftMessages in Frameworks */,
 				C4B889F72C13709A001A965F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,8 +108,26 @@
 			isa = PBXGroup;
 			children = (
 				C47DDE8A2C1392F90088DAB6 /* NetworkMonitor.swift */,
+				C47DDE8F2C139A470088DAB6 /* ProgressHUD.swift */,
+				C47DDE942C139E6F0088DAB6 /* MessageManager.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C47DDE962C13A9FF0088DAB6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C47DDE832C1375430088DAB6 /* SearchViewModelTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C47DDE972C13AA0A0088DAB6 /* Util Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C47DDE9A2C13AA6C0088DAB6 /* MockGitHubService.swift */,
+			);
+			path = "Util Mocks";
 			sourceTree = "<group>";
 		};
 		C4B889B92C136EBD001A965F = {
@@ -147,7 +175,8 @@
 		C4B889D52C136EC0001A965F /* GitUserSeekTests */ = {
 			isa = PBXGroup;
 			children = (
-				C47DDE832C1375430088DAB6 /* SearchViewModelTests.swift */,
+				C47DDE962C13A9FF0088DAB6 /* ViewModels */,
+				C47DDE972C13AA0A0088DAB6 /* Util Mocks */,
 			);
 			path = GitUserSeekTests;
 			sourceTree = "<group>";
@@ -231,6 +260,8 @@
 			name = GitUserSeek;
 			packageProductDependencies = (
 				C4B889F62C13709A001A965F /* Alamofire */,
+				C47DDE8D2C1399A30088DAB6 /* JGProgressHUD */,
+				C47DDE922C139E5C0088DAB6 /* SwiftMessages */,
 			);
 			productName = GitUserSeek;
 			productReference = C4B889C22C136EBD001A965F /* GitUserSeek.app */;
@@ -306,6 +337,8 @@
 			mainGroup = C4B889B92C136EBD001A965F;
 			packageReferences = (
 				C4B889F52C137099001A965F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C47DDE8C2C1399A30088DAB6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				C47DDE912C139E5C0088DAB6 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 			);
 			productRefGroup = C4B889C32C136EBD001A965F /* Products */;
 			projectDirPath = "";
@@ -351,10 +384,12 @@
 			files = (
 				C4B889F12C136FDA001A965F /* GitHubUser.swift in Sources */,
 				C47DDE8B2C1392F90088DAB6 /* NetworkMonitor.swift in Sources */,
+				C47DDE902C139A470088DAB6 /* ProgressHUD.swift in Sources */,
 				C47DDE882C13828D0088DAB6 /* UserImageView.swift in Sources */,
 				C4B889FA2C1371ED001A965F /* SearchViewModel.swift in Sources */,
 				C4B889C82C136EBD001A965F /* SearchView.swift in Sources */,
 				C4B889F42C13702E001A965F /* GitHubService.swift in Sources */,
+				C47DDE952C139E6F0088DAB6 /* MessageManager.swift in Sources */,
 				C4B889FD2C137243001A965F /* UserDetailView.swift in Sources */,
 				C4B889C62C136EBD001A965F /* GitUserSeekApp.swift in Sources */,
 			);
@@ -365,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C47DDE842C1375430088DAB6 /* SearchViewModelTests.swift in Sources */,
+				C47DDE9B2C13AA6C0088DAB6 /* MockGitHubService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +726,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C47DDE8C2C1399A30088DAB6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+		C47DDE912C139E5C0088DAB6 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		C4B889F52C137099001A965F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -701,6 +753,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C47DDE8D2C1399A30088DAB6 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C47DDE8C2C1399A30088DAB6 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		C47DDE922C139E5C0088DAB6 /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C47DDE912C139E5C0088DAB6 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
 		C4B889F62C13709A001A965F /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4B889F52C137099001A965F /* XCRemoteSwiftPackageReference "Alamofire" */;

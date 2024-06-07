@@ -2,15 +2,26 @@ import Foundation
 import Combine
 
 class SearchViewModel: ObservableObject {
+    @Published var isConnected = true
+    @Published var searchText: String = ""
+    @Published var isLoading: Bool = false
     @Published var users: [GitHubUser] = []
     @Published var errorMessage: String?
-    @Published var isLoading: Bool = false
-    @Published var searchText: String = ""
 
+    private var networkMonitor = NetworkMonitor()
+    private let gitHubService: GitHubService
     private var cancellables = Set<AnyCancellable>()
-    private let gitHubService = GitHubService()
 
-    init() {
+    init(
+        gitHubService: GitHubService = GitHubServiceImpl()
+    ) {
+        self.gitHubService = gitHubService
+
+        networkMonitor.$isConnected
+                   .receive(on: RunLoop.main)
+                   .assign(to: \.isConnected, on: self)
+                   .store(in: &cancellables)
+
         $searchText
             .debounce(for: .seconds(1), scheduler: RunLoop.main)
             .removeDuplicates()
@@ -22,20 +33,21 @@ class SearchViewModel: ObservableObject {
     }
 
     func fetchUsers(for keyword: String) {
-        guard keyword.count > 1 else { return }
+        guard isConnected, !keyword.isEmpty else {
+            errorMessage = "No network connection or keyword is empty"
+            return
+        }
         isLoading = true
         gitHubService.fetchUsers(for: keyword)
             .throttle(for: .seconds(1), scheduler: RunLoop.main, latest: true)
-            .sink(receiveCompletion: { completion in
-                self.isLoading = false
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.isLoading = false
                 if case .failure(let error) = completion {
-                    self.errorMessage = error.localizedDescription
+                    self?.errorMessage = error.localizedDescription
                 }
             }, receiveValue: { users in
                 self.users = users
-                self.errorMessage = nil
             })
             .store(in: &cancellables)
     }
 }
-

@@ -2,6 +2,8 @@ import Foundation
 import Combine
 import Alamofire
 
+// MARK: - Service Errors
+
 enum GitHubServiceError: Error, LocalizedError {
     case invalidURL
     case network(Error)
@@ -22,8 +24,16 @@ enum GitHubServiceError: Error, LocalizedError {
     }
 }
 
-class GitHubService {
-    
+// MARK: - Service Protocol
+
+protocol GitHubService {
+    func fetchUsers(for keyword: String) -> AnyPublisher<[GitHubUser], GitHubServiceError>
+}
+
+// MARK: - Service Implementation
+
+class GitHubServiceImpl: GitHubService {
+
     func fetchUsers(for keyword: String) -> AnyPublisher<[GitHubUser], GitHubServiceError> {
     
         guard let encodedKeyword = keyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
@@ -34,9 +44,12 @@ class GitHubService {
         return Future { promise in
             AF.request(url).validate().responseDecodable(of: GitHubUserSearchResponse.self) { response in
                 switch response.result {
+                
                 case .success(let data):
                     promise(.success(data.items))
+                
                 case .failure(let error):
+                    // Handle 4xx and 5xx errors
                     if let httpStatusCode = response.response?.statusCode, (400...499).contains(httpStatusCode) {
                         promise(.failure(.server))
                     } else if let httpStatusCode = response.response?.statusCode, (500...599).contains(httpStatusCode) {
